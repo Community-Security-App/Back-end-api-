@@ -1,0 +1,10 @@
+#Install 
+
+Make sure you have express, node.js, mongodb and npm(manages packages for node)
+
+git clone the repo 
+
+CD into it 
+
+run npm install to get all the dependencies
+
