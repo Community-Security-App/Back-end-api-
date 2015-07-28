@@ -1,4 +1,4 @@
-#Install 
+##Install 
 
 Make sure you have express, node.js, mongodb and npm(manages packages for node)
 
@@ -14,4 +14,6 @@ Get into the mongodb shell and run "use sApp" to create a database with the requ
 
 Make sure mondodb is running.
 
-Run node.js to run the application
+To run the program run npm start 
+
+
