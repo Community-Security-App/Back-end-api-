@@ -5,10 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mongoose   = require('mongoose')
+var user       = require('./schemas/userSchema')
+
+
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+//Dbase connection 
+mongoose.connect('mongodb://localhost/sApp')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,9 +30,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+//app.use('/', routes);
 
+//Path to the user routes
+app.use('/users', require('./routes/users'));
+
+app.get('/', function(req, res){
+  res.send("The server is up and running")
+  console.log("This is working")
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -56,5 +70,5 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
+//app.listen(3000)
 module.exports = app;
