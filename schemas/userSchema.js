@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var Schema   = mongoose.Schema()
+var Schema   = mongoose.Schema
 
 
 //User Schema to create the models from 
@@ -13,8 +13,8 @@ var userSchema = new Schema({
 	is_superuser: Boolean,
 	is_active: Boolean,
 	last_login: Date,
-	date_joined: Date, 
-})
+	date_joined: Date
+});
 
 
 // We need methods which will interact with the data e.g
