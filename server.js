@@ -14,7 +14,7 @@ var user       = require('./schemas/userSchema')
 
 //Connection to the dbase
 //For production should sort of set up a stable database
-mongoose.connect('localhost:2701/FPrac')
+mongoose.connect('mongodb://localhost/sApp')
 
 //Config the pap to user bodyParser
 app.use(bodyParser.urlencoded({extended: true}))

@@ -6,6 +6,12 @@ git clone the repo
 
 CD into it 
 
-run npm install to get all the dependencie
+run 'npm install' to get all the dependencies
 
-Run node server.js to run the application. Make sure an instance of mongodb is running to link to
+Make sure to have an instance of mongodb running
+
+Get into the mongodb shell and run "use sApp" to create a database with the required name 
+
+Make sure mondodb is running.
+
+Run node.js to run the application
