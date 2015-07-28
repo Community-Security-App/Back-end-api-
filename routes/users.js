@@ -47,7 +47,27 @@ router.post('/', function(req, res, next) {
 	})
 })
 
-//TODO: PUT command. 
+//Updates a certain user in the database
+router.put('/:id', function(req, res, next){
+     user.findByID(req.params.id, function (err, user){
+        if (err)
+            res.send(err)
+        
+        user.first_name: req.body.first_name,
+        user.last_name:  req.body.last_name,
+        user.email: req.body.email,
+        user.password: req.body.password,
+        user.is_staff: req.body.is_staff,
+        user.is_superuser: req.body.is_superuser,
+        user.is_active: req.body.isactive,
+        //last_login: req.body.last_login, // This should never really change
+        //date_joined: req.body.date_joined
+
+        res.json({"success": "1"})
+    })
+})
+
+// Deletes a particular item from the dbase
 router.delete('/:uid', function(req, res, next) {
     user.findByIdAndRemove(req.param.uid, function(err){
         if (err)
