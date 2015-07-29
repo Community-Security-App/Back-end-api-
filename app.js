@@ -10,13 +10,17 @@ var user       = require('./schemas/userSchema')
 
 
 
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
 //Dbase connection 
-mongoose.connect('mongodb://localhost/sApp')
+mongoose.connect('mongodb://localhost/sApp');
+//var db = mongoose.connection;
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', routes);
 
+
 //Path to the user routes
 app.use('/users', require('./routes/users'));
 
@@ -45,7 +50,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
 // error handlers
 
 // development error handler

@@ -8,7 +8,7 @@ var userSchema = new Schema({
 	first_name: String,
 	last_name:  String,
 	email: String,
-	password: {type: String, required: true},
+	password: String,
 	is_staff: Boolean,
 	is_superuser: Boolean,
 	is_active: Boolean,
@@ -25,7 +25,7 @@ userSchema.pre('save', function(next){
 	if(!date_joined)
 		this.date_joined = new Date()
 	
-	next();
+	//next();
 })
 // We will need a method which will hash the password before storage
 var User = mongoose.model('User', userSchema)
