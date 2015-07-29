@@ -20,13 +20,13 @@ var userSchema = new Schema({
 // We need methods which will interact with the data e.g
 
 // Before save if this function is run 
-userSchema.pre('save', function(next){
+/*userSchema.pre('save', function(next){
 
 	if(!date_joined)
 		this.date_joined = new Date()
 	
-	//next();
-})
+	next();
+}) */
 // We will need a method which will hash the password before storage
 var User = mongoose.model('User', userSchema)
 
