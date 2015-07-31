@@ -30,12 +30,14 @@ router.get('/:uid', function(req, res, next) {
 router.post('/', function(req, res, next) {
      user.create(req.body, function (err, post) {
 
-    if (err){
+    if (err)
+    {
         res.send(err)}
-        else {
-    res.json(post)
-    res.json(req.body)
-    //res.send({"success" : "1"})
+    else 
+    {
+        res.json(post)
+        res.json(req.body)
+    
     }
   });
 });
@@ -46,7 +48,7 @@ router.put('/:id', function(req, res, next){
         if (err)
             res.send(err)
         else
-        res.send({"success": "1"})
+            res.send({"success": "1"})
     })
 }) 
 
