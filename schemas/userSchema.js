@@ -5,6 +5,7 @@ var Schema   = mongoose.Schema
 //User Schema to create the models from 
 //TODO: Make sure that the type is accurate
 var userSchema = new Schema({
+	_id : String,
 	first_name: String,
 	last_name:  String,
 	email: String,
