@@ -4,8 +4,7 @@ var router  = express.Router();
 var user    = require('../schemas/userSchema')
 
 
-
-/* GET all the users */
+/* returns all the users */
 router.get('/', function(req, res, next) {
   user.find(function(err, users) {
             if(err)
@@ -31,7 +30,21 @@ router.get('/id', function(req, res, next) {
 
 /* Creates a new user */
 router.post('/', function(req, res, next) {
-     user.create(req.body, function (err, post) {
+
+    newUser = new user({
+    first_name: req.body.first_name,
+    last_name:  req.body.last_name,
+    email: req.body.email,
+    password: req.password,
+    is_staff: req.is_staff,
+    is_superuser: req.is_superuser,
+    is_active: req.is_active,
+    last_login: Date,
+    date_joined: Date
+    })
+
+     newUser.create(req.body, function (err, post) {
+
 
     if (err)
     {
@@ -39,7 +52,7 @@ router.post('/', function(req, res, next) {
     else 
     {
         //res.json(post)
-        res.json(req.body)
+        res.json(body)
     
     }
   });
@@ -47,7 +60,7 @@ router.post('/', function(req, res, next) {
 
 //Updates a certain user in the database
 router.put('/:id', function(req, res, next){
-     user.findOneAndUpdate(req.params.id, req.body, function (err, post){
+     user.findByIdAndUpdate(req.params.id, req.body, function (err, post){
         if (err)
             res.send(err)
         else
