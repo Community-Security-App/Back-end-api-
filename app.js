@@ -10,7 +10,7 @@ var mongoose   = require('mongoose')
 
 var routes = require('./routes/index');
 var userController = require('./routes/users');
-var eventController = require('./routers/events')
+var eventController = require('./routes/events')
 
 var app = express();
 
@@ -30,24 +30,23 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', routes);
+
 
 
 //Path to the user routes
 //app.use('/users', require('./routes/users'));
 
-//API endpoint for /users
 router.route('/users')
   .post(userController.postUsers)
-  .get(userController.getUser)
+  .get(userController.getUsers)
 
 router.route('/users/:id')
-  .get(userController.getUseById)
-  .delete(userController.delete)
+  .get(userController.getUserById)
+  .delete(userController.deleteUser)
   .put(userController.putUser)
 
 //API endpoint for /events
@@ -67,6 +66,8 @@ app.get('/', function(req, res){
   res.send("The server is up and running")
   console.log("This is working")
 })
+
+app.use('/', routes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -74,6 +75,8 @@ app.use(function(req, res, next) {
   next(err);
 });
 // error handlers
+//API endpoint for /users
+
 
 // development error handler
 // will print stacktrace

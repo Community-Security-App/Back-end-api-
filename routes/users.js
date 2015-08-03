@@ -21,7 +21,7 @@ exports.postUsers = function(req, res) {
     
         res.json(body);
     
-    }
+    
   });
 
 };
@@ -38,7 +38,7 @@ exports.getUsers = function(req, res) {
 };
 
 //A certain user ID
-exports.getUserId = function(req, res) {
+exports.getUserById = function(req, res) {
     user.find(req.params.id, function(err, user) {
         if (err)
             res.send(err)
@@ -75,7 +75,7 @@ exports.deleteUser = function( req, res) {
     
         res.json(body);
     
-    }
+    
   });
 
 };
