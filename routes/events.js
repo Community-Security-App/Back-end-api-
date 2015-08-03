@@ -42,7 +42,7 @@ exports.getEvents = function(req, res) {
 };
 
 //Endpoint to get an event with a certain ID 
-exports.getEventId = function(req, res) {
+exports.getEventById = function(req, res) {
     uEvent.findById (req.params._id, function(err, uevent) {
         if(err)
             res.send(err);

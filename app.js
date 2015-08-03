@@ -6,15 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var mongoose   = require('mongoose')
-var user       = require('./schemas/userSchema')
-
-
 
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var userController = require('./routes/users');
+var eventController = require('./routers/events')
 
 var app = express();
+
+var router = express.Router();
 
 //Dbase connection 
 mongoose.connect('mongodb://localhost/sApp');
@@ -38,7 +38,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Path to the user routes
-app.use('/users', require('./routes/users'));
+//app.use('/users', require('./routes/users'));
+
+//API endpoint for /users
+router.route('/users')
+  .post(userController.postUsers)
+  .get(userController.getUser)
+
+router.route('/users/:id')
+  .get(userController.getUseById)
+  .delete(userController.delete)
+  .put(userController.putUser)
+
+//API endpoint for /events
+router.route('/events')
+    .post(eventController.postEvents)
+    .get(eventController.getEvents)
+
+//API endpoint for /events:id
+router.route('/events/:event_id')
+  .get(eventController.getEventById)
+  //.delete(eventController.delete)
+
+
+
 
 app.get('/', function(req, res){
   res.send("The server is up and running")
