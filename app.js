@@ -55,7 +55,7 @@ router.route('/events')
     .get(eventController.getEvents)
 
 //API endpoint for /events:id
-router.route('/events/:event_id')
+router.route('/events/:id')
   .get(eventController.getEventById)
   //.delete(eventController.delete)
 

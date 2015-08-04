@@ -15,7 +15,6 @@ exports.postUsers = function(req, res) {
         newUser.last_login = new Date(),
         newUser.date_joined = new Date()
 
-
      newUser.save(function(err) {
         if(err)
             res.send(err)
@@ -66,7 +65,6 @@ exports.putUser = function(req, res) {
     })
 
 };
-
 //deletes a user
 exports.deleteUser = function( req, res) {
         user.findByIdAndRemove(req.params.id, function(err, user) {
