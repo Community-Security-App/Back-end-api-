@@ -49,6 +49,21 @@ exports.getUserById = function(req, res) {
 
 //changes a user
 exports.putUser = function(req, res) {
+    user.findById(req.params.id, function(err, user) {
+        if(err)
+            res.send(err)
+
+        for (prop in req.body) {
+            user[prop] = req.body[prop]
+        }
+
+        user.save(function(err){
+            if(err)
+                res.send(err)
+
+            res.json({"Sucess" : "User Updated"})
+        })
+    })
 
 };
 
