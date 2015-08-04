@@ -7,19 +7,19 @@ exports.postEvents = function(req, res) {
 
     var newEvent = new uEvent();
 
-    newEvent.description = req.body.description;
-    newEvent.threatLevel = req.body.threatLevel;
-    newEvent.location    = req.body.location;
-    newEvent.latitude    = req.body.latitude;
-    newEvent.longitude   = req.body.longitude;
-    newEvent.occurenceTime = req.body.occurenceTime;
-    newEvent.reportedTime  = req.body,reportedTime;
+    newEvent.description = req.body.description,
+    newEvent.threatLevel = req.body.threatLevel,
+    newEvent.location    = req.body.location,
+    newEvent.latitude    = req.body.latitude,
+    newEvent.longitude   = req.body.longitude,
+    newEvent.occurenceTime = req.body.occurenceTime,
+    newEvent.reportedTime  = new Date(),
     //reported_by (FK, User)
-    newEvent.upvoteCount   = req.body.upvoteCount;
-    newEvent.downvoteCount = req.body.downvoteCount;
-    newEvent.flagCount     = req.body.flagCount;
-    newEvent.deleted       = req.body.deleted;
-    newEnvent.flagged       = req.body.flagged;
+    newEvent.upvoteCount   = req.body.upvoteCount,
+    newEvent.downvoteCount = req.body.downvoteCount,
+    newEvent.flagCount     = req.body.flagCount,
+    newEvent.deleted       = req.body.deleted,
+    newEvent.flagged      = req.body.flagged
 
     newEvent.save(function(err) {
         if (err)
@@ -43,7 +43,7 @@ exports.getEvents = function(req, res) {
 
 //Endpoint to get an event with a certain ID 
 exports.getEventById = function(req, res) {
-    uEvent.findById(req.params._id, function(err, uevent) {
+    uEvent.findById(req.params.id, function(err, uevent) {
         if(err)
             res.send(err);
 

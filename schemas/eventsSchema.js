@@ -18,4 +18,4 @@ var eventSchema = new Schema({
     flagged       : Boolean
 }); 
 
-module.exports = eventSchema;
+module.exports = mongoose.model('event', eventSchema);
