@@ -25,7 +25,8 @@ userSchema.pre('save', function(callback) {
     var user = this;
 
     //Password has not changed
-    if (! user.isModified('password')) return callback();
+    if (!user.isModified('password'))
+    return callback();
 
     //Password has changed so we need to hash it
     bcrypt.genSalt(5, function(err, salt){
