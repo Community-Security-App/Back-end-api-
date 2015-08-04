@@ -5,22 +5,22 @@ exports.postUsers = function(req, res) {
 
      newUser = new user();
     
-        first_name = req.body.first_name,
-        last_name = req.body.last_name,
-        email  =req.body.email,
-        password = req.password,
-        is_staff =req.is_staff,
-        is_superuser = req.is_superuser,
-        is_active = req.is_active,
-        last_login = new Date(),
-        date_joined = new Date()
+        newUser.first_name = req.body.first_name,
+        newUser.last_name = req.body.last_name,
+        newUser.email  =req.body.email,
+        newUser.password = req.password,
+        newUser.is_staff =req.is_staff,
+        newUser.is_superuser = req.is_superuser,
+        newUser.is_active = req.is_active,
+        newUser.last_login = new Date(),
+        newUser.date_joined = new Date()
 
 
      newUser.save(function(err) {
         if(err)
             res.send(err)
     
-        res.json({"sucess" : "1"});
+        res.json(newUser);
     });
 
 };
