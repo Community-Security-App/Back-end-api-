@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+var bcrypt   = require('bcrypt-nodejs')
 var Schema   = mongoose.Schema
 
 
@@ -8,12 +9,36 @@ var userSchema = new Schema({
 	first_name: String,
 	last_name:  String,
 	email: String,
-	password: String,
+	password: {
+        type: String,
+        require : true
+    },
 	is_staff: Boolean,
 	is_superuser: Boolean,
 	is_active: Boolean,
 	last_login: Date,
 	date_joined: Date
+});
+
+//This will be executed each time before save
+userSchema.pre('save', function(callback) {
+    var user = this;
+
+    //Password has not changed
+    if (! user.isModified('password')) return callback();
+
+    //Password has changed so we need to hash it
+    bcrypt.genSalt(5, function(err, salt){
+        if(err) return callback(err);
+
+        bcrypt.hash(user.password, salt, null, function(err, hash){
+            if(err) return callback(err);
+
+            user.password = hash;
+            callback();
+        });
+    });
+
 });
 
 module.exports = mongoose.model('user', userSchema);
