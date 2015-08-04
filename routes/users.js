@@ -3,26 +3,25 @@ var user  = require('../schemas/userSchema');
 //Posts a user
 exports.postUsers = function(req, res) {
 
-     newUser = new user({
-        first_name: req.body.first_name,
-        last_name:  req.body.last_name,
-        email: req.body.email,
-        password: req.password,
-        is_staff: req.is_staff,
-        is_superuser: req.is_superuser,
-        is_active: req.is_active,
-        last_login: Date,
-        date_joined: Date
-    });
+     newUser = new user();
+    
+        first_name = req.body.first_name,
+        last_name = req.body.last_name,
+        email  =req.body.email,
+        password = req.password,
+        is_staff =req.is_staff,
+        is_superuser = req.is_superuser,
+        is_active = req.is_active,
+        last_login = new Date(),
+        date_joined = new Date()
 
-     newUser.create(req.body, function (err, post) {
+
+     newUser.save(function(err) {
         if(err)
-            res.json(err)
+            res.send(err)
     
-        res.json(body);
-    
-    
-  });
+        res.json({"sucess" : "1"});
+    });
 
 };
 
