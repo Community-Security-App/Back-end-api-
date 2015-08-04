@@ -16,5 +16,5 @@ var userSchema = new Schema({
 	date_joined: Date
 });
 
-module.exports = userSchema;
+module.exports = mongoose.model('user', userSchema);
 

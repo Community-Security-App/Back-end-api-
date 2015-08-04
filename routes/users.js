@@ -1,4 +1,4 @@
-var user    = require('../schemas/userSchema');
+var user  = require('../schemas/userSchema');
 
 //Posts a user
 exports.postUsers = function(req, res) {
@@ -30,16 +30,16 @@ exports.postUsers = function(req, res) {
 exports.getUsers = function(req, res) {
     user.find(function(err, users) {
             if(err)
-                res.send(err)
+                res.send(err);
 
-            res.json(users)
+            res.json(users);
 
-        })
+        });
 };
 
 //A certain user ID
 exports.getUserById = function(req, res) {
-    user.find(req.params.id, function(err, user) {
+    user.findById(req.params.id, function(err, user) {
         if (err)
             res.send(err)
 

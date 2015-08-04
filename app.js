@@ -8,13 +8,11 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose')
 
 
-var routes = require('./routes/index');
+//var routes = require('./routes/index');
 var userController = require('./routes/users');
 var eventController = require('./routes/events')
 
 var app = express();
-
-var router = express.Router();
 
 //Dbase connection 
 mongoose.connect('mongodb://localhost/sApp');
@@ -38,16 +36,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Path to the user routes
-//app.use('/users', require('./routes/users'));
+//app.use('/users');
+
+var router = express.Router();
 
 router.route('/users')
   .post(userController.postUsers)
-  .get(userController.getUsers)
+  .get(userController.getUsers);
 
 router.route('/users/:id')
   .get(userController.getUserById)
   .delete(userController.deleteUser)
-  .put(userController.putUser)
+  .put(userController.putUser);
 
 //API endpoint for /events
 router.route('/events')
@@ -67,7 +67,7 @@ app.get('/', function(req, res){
   console.log("This is working")
 })
 
-app.use('/', routes);
+app.use('/', router);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
