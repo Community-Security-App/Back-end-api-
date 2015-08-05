@@ -14,7 +14,7 @@ passport.use(new BasicStrategy(
 			user.verifyPassword(password, function(err, isMatch){
 				if (err) {return callback(err);}
 
-				if (!isMatch)  {return callback(null,false);}
+				if (!isMatch)  {return callback(null, false);}
 
 				return callback(null, user)
 					
@@ -23,4 +23,4 @@ passport.use(new BasicStrategy(
 		})
 	}))
 
-exports.isAuthenticated = passport.authenticate('basic', {session : false})
+exports.isAuthenticated = passport.authenticate('basic', {session : false});

@@ -17,7 +17,7 @@ var authController = require('./routes/auth')
 var app = express();
 
 //Dbase connection 
-mongoose.connect('mongodb://localhost/newDB');
+mongoose.connect('mongodb://localhost/testDB');
 //var db = mongoose.connection;
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
@@ -42,9 +42,7 @@ app.use(passport.initialize());
 
 var router = express.Router();
 
-router.route('/users')
-  .post(userController.postUsers)
-  .get(authController.isAuthenticated, userController.getUsers);
+
 
 router.route('/users/:id')
   .get(authController.isAuthenticated,userController.getUserById)
@@ -61,7 +59,9 @@ router.route('/events/:id')
   .get(authController.isAuthenticated, eventController.getEventById)
   //.delete(eventController.delete)
 
-
+router.route('/users')
+  .post(userController.postUsers)
+  .get(authController.isUAthenticated, userController.getUsers);
 
 
 app.get('/', function(req, res){

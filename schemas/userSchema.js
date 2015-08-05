@@ -15,6 +15,7 @@ var userSchema = new Schema({
     },
     username: {
         type: String,
+        unique: true,
         require: true
     },
 	is_staff: Boolean,
@@ -27,7 +28,7 @@ var userSchema = new Schema({
 //This will be executed each time before save
 userSchema.pre('save', function(callback) {
     var user = this;
-
+    console.log(user)
     //Password has not changed
     if (!user.isModified('password'))
     return callback();
@@ -38,6 +39,7 @@ userSchema.pre('save', function(callback) {
 
         bcrypt.hash(user.password, salt, null, function(err, hash){
             if(err) return callback(err);
+            console.log(user.password)
 
             user.password = hash;
             callback();
@@ -50,7 +52,8 @@ userSchema.pre('save', function(callback) {
 userSchema.methods.verifyPassword = function(password, callback) {
     bcrypt.compare(password, this.password, function(err, isMatch){
         if (err) return callback(err);
-        cb(null, isMatch)
+        console.log(isMatch)
+        callback(null, isMatch)
     })
 }
 
