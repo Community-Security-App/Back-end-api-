@@ -6,17 +6,18 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var mongoose   = require('mongoose')
-var passport = require('./routes/auth')
+var passport = require('passport')
 
 
 //var routes = require('./routes/index');
 var userController = require('./routes/users');
 var eventController = require('./routes/events')
+var authController = require('./routes/auth')
 
 var app = express();
 
 //Dbase connection 
-mongoose.connect('mongodb://localhost/sApp');
+mongoose.connect('mongodb://localhost/newDB');
 //var db = mongoose.connection;
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
@@ -32,7 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(passport.initialize());
 
 
 
@@ -43,21 +44,21 @@ var router = express.Router();
 
 router.route('/users')
   .post(userController.postUsers)
-  .get(userController.getUsers);
+  .get(authController.isAuthenticated, userController.getUsers);
 
 router.route('/users/:id')
-  .get(userController.getUserById)
-  .delete(userController.deleteUser)
-  .put(userController.putUser);
+  .get(authController.isAuthenticated,userController.getUserById)
+  .delete(authController.isAuthenticated, userController.deleteUser)
+  .put(authController.isAuthenticated, userController.putUser);
 
 //API endpoint for /events
 router.route('/events')
-    .post(eventController.postEvents)
-    .get(eventController.getEvents)
+    .post(authController.isAuthenticated, eventController.postEvents)
+    .get(authController.isAuthenticated, eventController.getEvents)
 
 //API endpoint for /events:id
 router.route('/events/:id')
-  .get(eventController.getEventById)
+  .get(authController.isAuthenticated, eventController.getEventById)
   //.delete(eventController.delete)
 
 

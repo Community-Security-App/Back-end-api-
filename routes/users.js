@@ -14,6 +14,7 @@ exports.postUsers = function(req, res) {
         newUser.is_active = req.is_active,
         newUser.last_login = new Date(),
         newUser.date_joined = new Date()
+        newUser.username = req.body.username
 
      newUser.save(function(err) {
         if(err)
