@@ -13,6 +13,10 @@ var userSchema = new Schema({
         type: String,
         require : true
     },
+    username: {
+        type: String,
+        require: true
+    },
 	is_staff: Boolean,
 	is_superuser: Boolean,
 	is_active: Boolean,
@@ -41,6 +45,14 @@ userSchema.pre('save', function(callback) {
     });
 
 });
+
+//To verify the user passwords 
+userSchema.methods.verifyPassword = function(password, callback) {
+    bcrypt.compare(password, this.password, function(err, isMatch){
+        if (err) return callback(err);
+        cb(null, isMatch)
+    })
+}
 
 module.exports = mongoose.model('user', userSchema);
 
