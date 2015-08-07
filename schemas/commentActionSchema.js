@@ -1,4 +1,4 @@
-event (FK, Event)
+comment (FK, Comment)
 action_type (enum, choices=UPVOTE, DOWNVOTE, FLAG)
 note (string)
 action_by (User)
