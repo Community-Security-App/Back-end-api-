@@ -1,5 +1,17 @@
-event (FK, Event)
-action_type (enum, choices=UPVOTE, DOWNVOTE, FLAG)
-note (string)
-action_by (User)
-action_time (datetime)
+var mongoose = require('mongoose')
+var schema = mongoose.schema
+
+
+
+//TODO: Give them the proper types for each type of event 
+
+var eventAction = new schema({
+	eventT = String, 
+	actionType = String,
+	note = String,
+	actionBy = String, 
+	actionTime = Date, 
+})
+
+
+module.exports = mongoose.model('Uevent', eventAction)
