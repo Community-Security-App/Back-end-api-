@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 
 
-var commentAction = new Schema({
+var comment = new Schema({
 
 	uEvent = String, 
 	value = String, 
@@ -16,4 +16,4 @@ var commentAction = new Schema({
 	Flagged = Boolean
 });
 
-module.exports = mongoose.model("commentAction", commentAction);
+module.exports = mongoose.model("commentAction", comment);

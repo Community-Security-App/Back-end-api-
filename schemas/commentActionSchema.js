@@ -1,5 +1,10 @@
-comment (FK, Comment)
-action_type (enum, choices=UPVOTE, DOWNVOTE, FLAG)
-note (string)
-action_by (User)
-action_time (datetime)
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var commentAction = new Schema({
+	comment = String, 
+	actionType = String, 
+	note = String, 
+	actionBy = String, 
+	ActionTime = Date
+});
