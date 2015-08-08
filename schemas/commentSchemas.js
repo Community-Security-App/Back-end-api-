@@ -1,9 +1,19 @@
-event (FK, Event)
-value (string)
-comment_time (time)
-comment_by (FK, User)
-upvote_count (int)
-downvote_count(int)
-flag_count (int)
-deleted (boolean)
-flagged (boolean)
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+
+
+var commentAction = new Schema({
+
+	uEvent = String, 
+	value = String, 
+	commentTime = Date, 
+	commentBy = String, 
+	upVoteCount = Number, 
+	downVoteCount = Number, 
+	flagCount = Number, 
+	Deleted = Boolean, 
+	Flagged = Boolean
+});
+
+module.exports = mongoose.model("commentAction", commentAction);
