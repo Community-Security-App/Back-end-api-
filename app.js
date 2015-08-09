@@ -13,6 +13,7 @@ var passport = require('passport')
 var userController = require('./routes/users');
 var eventController = require('./routes/events')
 var authController = require('./routes/auth')
+var cliController = require('./routes/client')
 
 var app = express();
 
@@ -42,7 +43,7 @@ app.use(passport.initialize());
 
 var router = express.Router();
 
-
+//TODO: Create the endpoints of the clients authentication
 
 router.route('/users/:id')
   .get(authController.isAuthenticated,userController.getUserById)
