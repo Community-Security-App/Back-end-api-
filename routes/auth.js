@@ -42,3 +42,4 @@ passport.use('client-basic', new BasicStrategy({
 
 
 exports.isAuthenticated = passport.authenticate('basic', {session : false});
+exports.isClientAuthenticated = passport.authenticate('client-basic', {session : false});
