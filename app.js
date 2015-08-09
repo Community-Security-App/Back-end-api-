@@ -45,6 +45,11 @@ var router = express.Router();
 
 //TODO: Create the endpoints of the clients authentication
 
+router.route('/clients')
+  .post(authController.isAuthenticated, cliController.postClients)
+  .get(authController.isAuthenticated, cliController.getClients)
+
+  
 router.route('/users/:id')
   .get(authController.isAuthenticated,userController.getUserById)
   .delete(authController.isAuthenticated, userController.deleteUser)
