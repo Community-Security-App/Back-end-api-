@@ -4,14 +4,14 @@ exports.postClients = function(req, res) {
 
 	var newClient = new client();
 
-	client.name = req.body.name;
-	client.id = req.body.id;
-	client.secret = req.body.secret;
-	client.userId = req.user._id;
+	newClient.name = req.body.name;
+	newClient.id = req.body.id;
+	newClient.secret = req.body.secret;
+	newClient.userId = req.user._id;
 
  	//TODO: Do the saving of the client 
 
- 	client.save(function (err) {
+ 	newClient.save(function (err) {
  		if (err)
  			res.send(err);
 

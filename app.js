@@ -49,7 +49,7 @@ router.route('/clients')
   .post(authController.isAuthenticated, cliController.postClients)
   .get(authController.isAuthenticated, cliController.getClients)
 
-  
+
 router.route('/users/:id')
   .get(authController.isAuthenticated,userController.getUserById)
   .delete(authController.isAuthenticated, userController.deleteUser)
@@ -67,7 +67,7 @@ router.route('/events/:id')
 
 router.route('/users')
   .post(userController.postUsers)
-  .get(authController.isUAthenticated, userController.getUsers);
+  .get(authController.isAuthenticated, userController.getUsers);
 
 
 app.get('/', function(req, res){
