@@ -1,6 +1,8 @@
 var mongoose = require('mongoose')
+var Schema - mongoose.Schema;
 
-var clientSchema = new mongoose.Schema({
+
+var clientSchema = Schema ({
 	name: {
 		type: String, 
 		unique: true,
@@ -19,6 +21,7 @@ var clientSchema = new mongoose.Schema({
 		require: true
 	}
 })
+//TODO: USE rpassport to verify that the client is authenticated
 
 module.exports = mongoose.model('Client', clientSchema)
 
