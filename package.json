@@ -19,6 +19,8 @@
     "bcrypt-nodejs" : "~0.0.3",
     "passport": "~0.2.2",
     "passport-http" : "~0.2.2",
-    "passport-http-bearer" : "~1.0.1"
+    "passport-http-bearer" : "~1.0.1",
+    "express-session" : "~1.11.3",
+    "oauth2orize" : "~1.0.1"
   }
 }

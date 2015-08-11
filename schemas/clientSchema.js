@@ -21,7 +21,6 @@ var clientSchema = Schema ({
 		require: true
 	}
 })
-//TODO: USE rpassport to verify that the client is authenticated
 
 module.exports = mongoose.model('Client', clientSchema)
 
