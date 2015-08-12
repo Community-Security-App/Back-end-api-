@@ -57,7 +57,19 @@ server.exchange(ouath2rize.exchange.code(function(client, code, redirectUri, cal
 				if (err) {return callback(err); }
 
 				callback(null, token);
-			})
-		})
-	})
-}))
+			});
+		});
+	});
+}));
+
+exports.authorization = [
+	server.authorization(function(clientId, redirectUri, callback) {
+		Client.findOne({id: clientId}, function (err, client) {
+			if (err) {return callback(err); }
+
+			return callback(null, client, redirectUri);
+		});
+	}),
+	function(req, res) {
+		res.send('dialog', {transactionID: req.oauth2.transactionID, user:req.user, client:req.oauth1.client})
+	}]
