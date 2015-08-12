@@ -1,0 +1,5 @@
+var aouth2rize = require('ouath2rize')
+var user = require('../modles/userSchema')
+var client = require('../modles/userSchema')
+var token = require('../modles/userSchema')
+var code = require('../modles/userSchema')

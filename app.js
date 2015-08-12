@@ -5,9 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//not part of default express 
 var mongoose   = require('mongoose')
 var passport = require('passport')
-
+var session = require('express-session')
 
 //var routes = require('./routes/index');
 var userController = require('./routes/users');
@@ -35,6 +36,12 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
+
+app.use(session({
+  secret:'Super Secret Session Key',
+  saveUnitializedL true,
+  resave: true
+}))
 
 
 
