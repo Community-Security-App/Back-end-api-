@@ -1,8 +1,8 @@
-var aouth2orize = require('ouath2rize')
-var user = require('../modles/userSchema')
-var client = require('../modles/clientSchema')
-var token = require('../modles/tokenSchema')
-var code = require('../modles/codeSchema')
+var oauth2orize = require('oauth2orize')
+var user = require('../schemas/userSchema')
+var client = require('../schemas/clientSchema')
+var token = require('../schemas/tokenSchema')
+var code = require('../schemas/codeSchema')
 
 //Create the oauth2orize
 var server = oauth2orize.createServer();
@@ -37,7 +37,7 @@ server.grant(oauth2orize.grant.code(function(client, redirectUri, user, ares, ca
 	});
 }));
 
-server.exchange(ouath2rize.exchange.code(function(client, code, redirectUri, callback) {
+server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, callback) {
 	code.findOne({value: code}, function (err, authCode) {
 		if (err) { return callback(err); }
 		if (authCode == undefined) { return callback(null, false); }
@@ -83,7 +83,7 @@ exports.token = [
 	server.errorHandler()
 	]
 
-fuction uid(len) {
+function uid(len) {
 	var buf = []
 	, chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 	, charlen = chars.length;
@@ -96,5 +96,5 @@ fuction uid(len) {
 
 function getRandomInt(min, max) {
 	return Math.floor(Math.Random() * (max - min + 1)) + min;
-	
+
 }

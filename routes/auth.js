@@ -28,9 +28,9 @@ passport.use(new BasicStrategy(
 		})
 	}))
 
-passport.use('client-basic', new BasicStrategy({
+passport.use('client-basic', new BasicStrategy(
 
-	function(username, password, callback){
+	function( username, password, callback){
 		Client.findOne({id: username}, function(err, client) {
 			if(err) {return callback(err); }
 
@@ -40,17 +40,16 @@ passport.use('client-basic', new BasicStrategy({
 
 			return callback(null, client)
 		})
-	}
 }))
 
-passport.use(new BearerStrategy({
+passport.use(new BearerStrategy(
 	function(accessToken, callback) {
 		Token.findOne({value: accessToken}, function (err, token) {
 			if(err) {return callback(err); }
 
 			if (!token) {return callback(null, false); }
 
-			User.finOne( _id : token.userId, function (err, user) {
+			User.finOne( {_id: token.userId}, function (err, user) {
 				if (err) {return callbalck(err);}
 
 				if(!user) {return callbakc(null, false);}
@@ -59,7 +58,7 @@ passport.use(new BearerStrategy({
 			})
 
 		})
-	}
+	
 }))
 
 exports.isAuthenticated = passport.authenticate(['basic', 'bearer'],  {session : false});

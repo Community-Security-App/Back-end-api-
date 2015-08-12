@@ -20,4 +20,4 @@ var codeSchema = new Schema({
 	}
 })
 
-module.exports = mongoose.model('Code', CodeSchema);
+module.exports = mongoose.model('Code', codeSchema);
