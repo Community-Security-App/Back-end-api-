@@ -15,6 +15,7 @@ var userController = require('./routes/users');
 var eventController = require('./routes/events')
 var authController = require('./routes/auth')
 var cliController = require('./routes/client')
+var auth2Controller = require('../routes/oauth2')
 
 var app = express();
 
@@ -39,7 +40,7 @@ app.use(passport.initialize());
 
 app.use(session({
   secret:'Super Secret Session Key',
-  saveUnitializedL true,
+  saveUnitialized: true,
   resave: true
 }))
 
@@ -52,6 +53,13 @@ var router = express.Router();
 
 //TODO: Create the endpoints of the clients authentication
 
+router.route('/oauth2/authorize')
+  .get(authController.isAuthenticated, oauth2Controller.authorization)
+  .post(authController.isAuthenticated, oauth2Controller.decision);
+
+router.route('/oauth2/token')
+  .post(authController.isClientAuthenticated, auth2Controller.token);
+  
 router.route('/clients')
   .post(authController.isAuthenticated, cliController.postClients)
   .get(authController.isAuthenticated, cliController.getClients)
