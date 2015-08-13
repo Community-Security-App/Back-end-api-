@@ -7,20 +7,22 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "bcrypt-nodejs": "~0.0.3",
     "body-parser": "~1.13.2",
+    "consolidate": "^0.13.1",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
+    "ejs": "^2.3.3",
     "express": "~4.13.1",
+    "express-session": "~1.11.3",
     "jade": "~1.11.0",
-    "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0",
-    "mongoose": "~4.1.0",
     "mongodb": "~2.0.39",
-    "bcrypt-nodejs" : "~0.0.3",
+    "mongoose": "~4.1.0",
+    "morgan": "~1.6.1",
+    "oauth2orize": "~1.0.1",
     "passport": "~0.2.2",
-    "passport-http" : "~0.2.2",
-    "passport-http-bearer" : "~1.0.1",
-    "express-session" : "~1.11.3",
-    "oauth2orize" : "~1.0.1"
+    "passport-http": "~0.2.2",
+    "passport-http-bearer": "~1.0.1",
+    "serve-favicon": "~2.3.0"
   }
 }

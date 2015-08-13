@@ -10,6 +10,10 @@ var mongoose   = require('mongoose')
 var passport = require('passport')
 var session = require('express-session')
 
+//TODO: To remove this 
+var ejs = require('ejs')
+var engines = require('consolidate')
+
 //var routes = require('./routes/index');
 var userController = require('./routes/users');
 var eventController = require('./routes/events')
@@ -27,7 +31,11 @@ mongoose.connection.on('error', console.error.bind(console, 'connection error:')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('view engine', 'jade');
+//app.engine('jade', engines.jade)
+//app.engine('ejs', engines.ejs)
+//TODO: Remove this 
+app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -106,10 +114,12 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+
+    res.send(err)
+    /*res.render('error', {
       message: err.message,
       error: err
-    });
+    }); */
   });
 }
 
@@ -117,10 +127,12 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+
+  res.send(err)
+  /*res.render('error', {
     message: err.message,
     error: {}
-  });
+  });*/
 });
 
 //app.listen(3000)
