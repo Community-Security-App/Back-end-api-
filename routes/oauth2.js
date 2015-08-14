@@ -3,6 +3,7 @@ var user = require('../schemas/userSchema')
 var Client = require('../schemas/clientSchema')
 var token = require('../schemas/tokenSchema')
 var Code = require('../schemas/codeSchema')
+var uid = require('rand-token').uid
 
 //Create the oauth2orize
 var server = oauth2orize.createServer();
@@ -31,22 +32,15 @@ server.deserializeClient(function(id, callback) {
 
 server.grant(oauth2orize.grant.code(function(client, redirectUri, user, ares, callback) {
 
-	console.log("We got to the server granting access")
 	var newCode = new Code();
-		console.log(uid(16))
+		
 		newCode.value = uid(16);
 		newCode.clientId = client._id; 
 		newCode.redirectUri =redirectUri;
 		newCode.userId = user._id;
-	//TODO: REmove this part as soon as possible
-	console.log(newCode)
-	console.log("That is the new code")
 
 	newCode.save(function(err) {
-		console.log(err)
-		console.log("This is err")
 		if (err) {return callback(err); }
-		console.log("This id grant")
 		callback(null, newCode.value);
 	});
 }));
@@ -82,8 +76,8 @@ exports.authorization = [
 		Client.findOne({id: clientId}, function (err, client) {
 			if (err) {return callback(err); }
 			//TODO: remove this 
-			//console.log("This is where we export authorization")
-			//zzsonsole.log(client)
+			console.log("This is where we export authorization")
+			console.log(client)
 			return callback(null, client, redirectUri);
 		});
 	}),
@@ -100,19 +94,3 @@ exports.token = [
 	server.token(),
 	server.errorHandler()
 	]
-
-function uid(len) {
-	var buf = []
-	, chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-	, charlen = chars.length;
-
-	for (var i = 0; i < len; i ++) {
-		buf.push(chars[getRandomInt(0, charlen - 1)]);
-	}
-	return buf.join('')
-};
-
-function getRandomInt(min, max) {
-	return Math.floor(Math.Random() * (max - min + 1)) + min;
-
-}
