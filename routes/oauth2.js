@@ -71,8 +71,8 @@ exports.authorization = [
 		});
 	}),
 	function(req, res) {
-		res.send({"We got here": "We got here"})
-		res.render('dialog', {transactionID: req.oauth2.transactionID, user:req.user, client:req.oauth1.client});
+		console.log({transactionID: req.oauth2.transactionID, user:req.user, client:req.oauth2.client})
+		res.render('dialog', {transactionID: req.oauth2.transactionID, user:req.user, client:req.oauth2.client});
 	}]
 
 exports.decision = [
