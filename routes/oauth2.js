@@ -1,8 +1,8 @@
 var oauth2orize = require('oauth2orize')
 var user = require('../schemas/userSchema')
-var client = require('../schemas/clientSchema')
+var Client = require('../schemas/clientSchema')
 var token = require('../schemas/tokenSchema')
-var code = require('../schemas/codeSchema')
+var Code = require('../schemas/codeSchema')
 
 //Create the oauth2orize
 var server = oauth2orize.createServer();
@@ -10,30 +10,44 @@ var server = oauth2orize.createServer();
 
 //serilize function
 server.serializeClient(function(client, callback) {
+	//TODO: Remove this soonest possible 
+	//console.log(client)
+	console.log("This is serialize")
 	return callback(null, client._id)
 })
 
 //Deserialize function 
 server.deserializeClient(function(id, callback) {
-	client.findOne({_id: id}, function (err, client) {
+	Client.findOne({_id: id}, function (err, client) {
 		if (err) {return callback(err); }
+		//TODO: Make sure to remove this
+		//console.log("Found a client in auth dese")
+		//console.log(client)
+		console.log("This is deserialize")
 		return callback(null, client);
+
 	});
 });
 
 server.grant(oauth2orize.grant.code(function(client, redirectUri, user, ares, callback) {
 
-	var code = new Code({
-		value: uid(16), 
-		clientId: client._id, 
-		redirectUri: redirectUri,
-		userId: user._id
-	});
+	console.log("We got to the server granting access")
+	var newCode = new Code();
+		console.log(uid(16))
+		newCode.value = uid(16);
+		newCode.clientId = client._id; 
+		newCode.redirectUri =redirectUri;
+		newCode.userId = user._id;
+	//TODO: REmove this part as soon as possible
+	console.log(newCode)
+	console.log("That is the new code")
 
-	code.save(function(err) {
+	newCode.save(function(err) {
+		console.log(err)
+		console.log("This is err")
 		if (err) {return callback(err); }
-
-		callback(null, code.value);
+		console.log("This id grant")
+		callback(null, newCode.value);
 	});
 }));
 
@@ -47,16 +61,17 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, ca
 		authCode.remove(function (err) {
 			if(err) {return callback(err); }
 
-			var token = new Token({
+			var newToken = new token({
 				value: uid(256),
 				clientId: authCode.clientId, 
 				userId: authCode.userId
 			});
 
-			token.save(function (err) {
+			newToken.save(function (err) {
 				if (err) {return callback(err); }
 
-				callback(null, token);
+				console.log("This is exchange")
+				callback(null, newToken);
 			});
 		});
 	});
@@ -64,9 +79,11 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, ca
 
 exports.authorization = [
 	server.authorization(function(clientId, redirectUri, callback) {
-		client.findOne({id: clientId}, function (err, client) {
+		Client.findOne({id: clientId}, function (err, client) {
 			if (err) {return callback(err); }
-
+			//TODO: remove this 
+			//console.log("This is where we export authorization")
+			//zzsonsole.log(client)
 			return callback(null, client, redirectUri);
 		});
 	}),
