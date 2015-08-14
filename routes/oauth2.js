@@ -15,7 +15,7 @@ server.serializeClient(function(client, callback) {
 
 //Deserialize function 
 server.deserializeClient(function(id, callback) {
-	Client.findOne({_id: id}, function (err, client) {
+	client.findOne({_id: id}, function (err, client) {
 		if (err) {return callback(err); }
 		return callback(null, client);
 	});
@@ -64,14 +64,15 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, ca
 
 exports.authorization = [
 	server.authorization(function(clientId, redirectUri, callback) {
-		Client.findOne({id: clientId}, function (err, client) {
+		client.findOne({id: clientId}, function (err, client) {
 			if (err) {return callback(err); }
 
 			return callback(null, client, redirectUri);
 		});
 	}),
 	function(req, res) {
-		res.send('dialog', {transactionID: req.oauth2.transactionID, user:req.user, client:req.oauth1.client});
+		res.send({"We got here": "We got here"})
+		res.render('dialog', {transactionID: req.oauth2.transactionID, user:req.user, client:req.oauth1.client});
 	}]
 
 exports.decision = [
