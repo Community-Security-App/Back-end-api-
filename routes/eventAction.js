@@ -1,1 +1,1 @@
-var Token = require('../schemas/eventActionSchema')
+var eventAction = require('../schemas/eventActionSchema')

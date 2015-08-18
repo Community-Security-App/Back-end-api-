@@ -1,1 +1,1 @@
-var Token = require('../schemas/commentSchema')
+var comment = require('../schemas/commentSchema')
