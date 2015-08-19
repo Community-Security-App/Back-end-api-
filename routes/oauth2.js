@@ -38,15 +38,24 @@ server.grant(oauth2orize.grant.code(function(client, redirectUri, user, ares, ca
 		newCode.clientId = client._id; 
 		newCode.redirectUri =redirectUri;
 		newCode.userId = user._id;
+		console.log(newCode)
+		console.log("Was the new code ever generated?");
 
 	newCode.save(function(err) {
 		if (err) {return callback(err); }
+		console.log(newCode)
+		console.log("This is the new code which has been generated"); 
 		callback(null, newCode.value);
 	});
 }));
 
 server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, callback) {
-	code.findOne({value: code}, function (err, authCode) {
+	Code.findOne({value: code}, function (err, authCode) {
+		
+		//TODO: Make sure to remove this
+		console.log(authCode);
+		console.log("This is the authocode")
+
 		if (err) { return callback(err); }
 		if (authCode == undefined) { return callback(null, false); }
 		if (client._id.toString() !== authCode.clientId) {return callback(null, false); }
@@ -64,7 +73,8 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, ca
 			newToken.save(function (err) {
 				if (err) {return callback(err); }
 
-				console.log("This is exchange")
+				console.log("Token has been returned with the callback")
+				console.log(newToken)
 				callback(null, newToken);
 			});
 		});
@@ -76,8 +86,8 @@ exports.authorization = [
 		Client.findOne({id: clientId}, function (err, client) {
 			if (err) {return callback(err); }
 			//TODO: remove this 
-			console.log("This is where we export authorization")
-			console.log(client)
+			//console.log("This is where we export authorization")
+			//console.log(client)
 			return callback(null, client, redirectUri);
 		});
 	}),

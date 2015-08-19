@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+/*
+* Authorization codes are generated in the first part of the oauth2 flow 
+*/
 var codeSchema = new Schema({
 	value : {
 		type: String, 

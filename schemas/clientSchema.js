@@ -1,5 +1,13 @@
+
+/*
+* This schema stores all the clients
+*/
+
 var mongoose = require('mongoose')
 var Schema   = mongoose.Schema;
+
+
+
 
 
 var clientSchema = Schema ({

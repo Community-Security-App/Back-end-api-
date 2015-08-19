@@ -17,4 +17,7 @@ var TokenSchema = new Schema({
 	}
 });
 
+// TODO: Hashing of the value of the token in the schema 
+
+
 module.exports = mongoose.model('Token', TokenSchema);
