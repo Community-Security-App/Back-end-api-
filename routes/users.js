@@ -5,16 +5,16 @@ exports.postUsers = function(req, res) {
 
      newUser = new user();
     
-        newUser.first_name = req.body.first_name,
-        newUser.last_name = req.body.last_name,
+        newUser.firstName = req.body.first_name,
+        newUser.lastName = req.body.last_name,
         newUser.email  =req.body.email,
         newUser.password = req.body.password,
         newUser.username = req.body.username,
-        newUser.is_staff =req.body.is_staff,
-        newUser.is_superuser = req.body.is_superuser,
-        newUser.is_active = req.body.is_active,
-        newUser.last_login = new Date(),
-        newUser.date_joined = new Date()
+        newUser.isStaff =req.body.is_staff,
+        newUser.isSuperuser = req.body.is_superuser,
+        newUser.isActive = req.body.is_active,
+        newUser.lastLogin = new Date(),
+        newUser.dateJoined = new Date()
         
 
      newUser.save(function(err) {
