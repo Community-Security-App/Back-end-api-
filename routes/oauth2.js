@@ -58,8 +58,12 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, ca
 
 		if (err) { return callback(err); }
 		if (authCode == undefined) { return callback(null, false); }
-		if (client._id.toString() !== authCode.clientId) {return callback(null, false); }
-		if (redirectUri != authCode.redirectUri) {return callback(null, false); }
+		if (client._id.toString() !== authCode.clientId) {
+			console.log("Got suck in to string")
+			return callback(null, false); }
+		if (redirectUri != authCode.redirectUri) {
+			console.log("Got stuck in the redirect URI")
+			return callback(null, false); }
 
 		authCode.remove(function (err) {
 			if(err) {return callback(err); }
