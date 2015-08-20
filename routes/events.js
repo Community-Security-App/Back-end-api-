@@ -1,8 +1,6 @@
 var uEvent = require('../schemas/eventsSchema');
 
-
-//Endpoint for all the get
-
+//Adds a particular event
 exports.postEvents = function(req, res) {
 
     var newEvent = new uEvent();
@@ -14,7 +12,7 @@ exports.postEvents = function(req, res) {
     newEvent.longitude   = req.body.longitude,
     newEvent.occurenceTime = req.body.occurenceTime,
     newEvent.reportedTime  = new Date(),
-    //TODO: Get the Id of the user and store it into reported by 
+    newEvent.reportedBy = req.user._id,
     newEvent.upvoteCount   = req.body.upvoteCount,
     newEvent.downvoteCount = req.body.downvoteCount,
     newEvent.flagCount     = req.body.flagCount,
@@ -30,7 +28,7 @@ exports.postEvents = function(req, res) {
     });
 };
 
-// End point for all the GET 
+// Returns all the events 
 exports.getEvents = function(req, res) {
 
     uEvent.find(function (err, uevent) {
@@ -41,7 +39,7 @@ exports.getEvents = function(req, res) {
     });
 };
 
-//Endpoint to get an event with a certain ID 
+//returns event by a certain ID
 exports.getEventById = function(req, res) {
     uEvent.findById(req.params.id, function(err, uevent) {
         if(err)
@@ -52,4 +50,14 @@ exports.getEventById = function(req, res) {
     });
 }
 
-//Endpoint to change 
+//Returns events that have been posted by a certain user
+//Returns all the latest events 
+//Returns all the flags of a certain event
+//Returns a flag with a particular ID in an event 
+//Returns all the votes on a certain event 
+//Returns a vote with a particular Id in an event 
+//Returns all the comments in a particular event 
+//Returns a comment with a particular Id  in an event
+//Returns events near a certain location 
+//Delete a comment 
+//Deletes an event report --> Make sure it
