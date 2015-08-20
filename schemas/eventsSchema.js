@@ -10,7 +10,7 @@ var eventSchema = new Schema({
     longitude   : Number,
     occurenceTime : Date,
     reportedTime  : Date,
-    //reported_by (FK, User)
+    reportedBy    : String,
     upvoteCount   : Number,
     downvoteCount : Number,
     flagCount     : Number,

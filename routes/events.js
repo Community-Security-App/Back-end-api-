@@ -14,7 +14,7 @@ exports.postEvents = function(req, res) {
     newEvent.longitude   = req.body.longitude,
     newEvent.occurenceTime = req.body.occurenceTime,
     newEvent.reportedTime  = new Date(),
-    //reported_by (FK, User)
+    //TODO: Get the Id of the user and store it into reported by 
     newEvent.upvoteCount   = req.body.upvoteCount,
     newEvent.downvoteCount = req.body.downvoteCount,
     newEvent.flagCount     = req.body.flagCount,

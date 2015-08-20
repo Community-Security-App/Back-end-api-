@@ -23,4 +23,7 @@ var codeSchema = new Schema({
 	}
 })
 
+//TODO: Hashing of the authorization code 
+
+
 module.exports = mongoose.model('Code', codeSchema);

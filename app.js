@@ -24,7 +24,7 @@ var auth2Controller = require('./routes/oauth2')
 var app = express();
 
 //Dbase connection 
-mongoose.connect('mongodb://localhost/testDB');
+mongoose.connect('mongodb://admin:admin@ds035593.mongolab.com:35593/sapp');
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 

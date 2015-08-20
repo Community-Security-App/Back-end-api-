@@ -1,3 +1,7 @@
+
+//TODO: MAke sure that all the code is within the 80 line column
+
+
 var oauth2orize = require('oauth2orize')
 var user = require('../schemas/userSchema')
 var Client = require('../schemas/clientSchema')
@@ -6,6 +10,7 @@ var Code = require('../schemas/codeSchema')
 var uid = require('rand-token').uid
 
 //Create the oauth2orize
+
 var server = oauth2orize.createServer();
 
 
