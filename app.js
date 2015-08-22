@@ -23,7 +23,7 @@ var auth2Controller = require('./routes/oauth2')
 
 var app = express();
 
-//Dbase connection 
+//Dbase connection with a preset mongo database online
 mongoose.connect('mongodb://admin:admin@ds035593.mongolab.com:35593/sapp');
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
@@ -84,6 +84,7 @@ router.route('/events/:id')
   .get(authController.isAuthenticated, eventController.getEventById)
   //.delete(eventController.delete)
 
+//Should not have get all users open. For dev purposes
 router.route('/users')
   .post(userController.postUsers)
   .get(authController.isAuthenticated, userController.getUsers);
@@ -94,7 +95,7 @@ app.get('/', function(req, res){
   console.log("This is working")
 })
 
-app.use('/', router);
+app.use('/v1', router);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -120,12 +121,10 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
 
-  //res.send(err.message)
   res.render('error', {
     message: err.message,
     error: {}
   });
 });
 
-//app.listen(3000)
 module.exports = app;
