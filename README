@@ -16,4 +16,10 @@ Make sure mondodb is running.
 
 To run the program run npm start 
 
+##Testing 
+To test use Postman.
+Does not have very helpful response/error messages so far
+
+oauth2 Authentication does not fully work on all the endpoints at the moment
+
 
