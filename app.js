@@ -57,37 +57,55 @@ var router = express.Router();
 
 //TODO: Create the endpoints of the clients authentication
 
+
+
 router.route('/oauth2/authorize')
+
+
   .get(authController.isAuthenticated, auth2Controller.authorization)
   .post(authController.isAuthenticated, auth2Controller.decision);
 
 router.route('/oauth2/token')
   .post(authController.isClientAuthenticated, auth2Controller.token);
 
+
+
 router.route('/clients')
   .post(authController.isAuthenticated, auth2Controller.authorization)
   .get(authController.isAuthenticated, cliController.getClients)
 
+router.route('/users')
 
+
+  .post(userController.postUsers)
+  .get(userController.getUsers)
+  
+  //With basic authentication
+  //.get(authController.isAuthenticated, userController.getUsers);
+
+//
 router.route('/users/:id')
-  .get(authController.isAuthenticated,userController.getUserById)
+  
+
+/* .get(authController.isAuthenticated,userController.getUserById)
   .delete(authController.isAuthenticated, userController.deleteUser)
-  .put(authController.isAuthenticated, userController.putUser);
+  .put(authController.isAuthenticated, userController.putUser); */
 
 //API endpoint for /events
 router.route('/events')
-    .post(authController.isAuthenticated, eventController.postEvents)
-    .get(authController.isAuthenticated, eventController.getEvents)
+   
+   /* .post(authController.isAuthenticated, eventController.postEvents)
+    .get(authController.isAuthenticated, eventController.getEvents) */
 
 //API endpoint for /events:id
 router.route('/events/:id')
-  .get(authController.isAuthenticated, eventController.getEventById)
+
+/*
+  .get(authController.isAuthenticated, eventController.getEventById) */
   //.delete(eventController.delete)
 
 //Should not have get all users open. For dev purposes
-router.route('/users')
-  .post(userController.postUsers)
-  .get(authController.isAuthenticated, userController.getUsers);
+
 
 
 app.get('/', function(req, res){
