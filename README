@@ -39,7 +39,6 @@ To test use Postman.
 Does not have very helpful response/error messages so far
 
 
-Options for Running
 
 oauth2 Authentication does not fully work on all the endpoints at the moment
 
