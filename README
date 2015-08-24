@@ -13,7 +13,7 @@ To run the program run npm start
 
 
 
-Options for Running
+##Options for Running
 
 You can run with the mongodb specified in app.js(online connection)
 
@@ -22,10 +22,10 @@ locally, or on mongolabs
 
 E.g 
 
-Locally: 
+###Locally: 
 mongoose.connect('mongodb://localhost/sapp');
 
-Mongolabs: 
+###Mongolabs: 
 
 mongoose.connect('mongodb://admin:admin@ds035593.mongolab.com:35593/sapp');
 
