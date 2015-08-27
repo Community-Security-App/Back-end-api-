@@ -22,7 +22,7 @@ locally, or on mongolabs
 
 E.g 
 
-###Locally: 
+####Locally: 
 mongoose.connect('mongodb://localhost/sapp');
 
 ###Mongolabs: 
@@ -34,7 +34,7 @@ sapp is the name defined in mongodb terminal by the use command i.e use sapp
 
 
 
-##Testing 
+####Testing 
 To test use Postman.
 Does not have very helpful response/error messages so far
 
