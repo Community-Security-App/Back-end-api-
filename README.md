@@ -35,11 +35,14 @@ sapp is the name defined in mongodb terminal by the use command i.e use sapp
 
 
 ####Testing 
-To test use Postman.
+To test use Postman.(PS: this is a rest API and does not have any front 
+end/mobile system) 
 Does not have very helpful response/error messages so far
 
 
 
 oauth2 Authentication does not fully work on all the endpoints at the moment
+
+
 
 
