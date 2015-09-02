@@ -12,3 +12,6 @@ exports.getComment = function(req, res){
 }
 
 //Get a comment by a certain ID
+exports.getCommentByID = function(req, res){
+  
+}
