@@ -51,10 +51,22 @@ exports.getEventById = function(req, res) {
 }
 
 //Returns events that have been posted by a certain user
+exports.getEventByUser = function(req, res) {
+
+}
 //Returns all the latest events 
+exports.getLatestEvents = function(req, res) {
+
+}
 //Returns all the flags of a certain event
+exports.getEventFlags = function(req, res) {
+
+}
 //Returns a flag with a particular ID in an event 
 //Returns all the votes on a certain event 
+exports.getEventVotes = function(req, res) {
+    
+}
 //Returns a vote with a particular Id in an event 
 //Returns all the comments in a particular event 
 //Returns a comment with a particular Id  in an event
