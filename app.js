@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-//not part of default expre
+//not part of default express
 //TODO : Might not need the mongoose over here
 var mongoose   = require('mongoose')
 var passport = require('passport')
