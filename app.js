@@ -49,35 +49,24 @@ app.use(session({
   saveUninitialized: true,
   resave: true
 }))
-
-
-
 //Path to the user routes
 
 var router = express.Router();
 
 //TODO: Create the endpoints of the clients authentication
 
-
-
 router.route('/oauth2/authorize')
-
-
   .get(authController.isAuthenticated, auth2Controller.authorization)
   .post(authController.isAuthenticated, auth2Controller.decision);
 
 router.route('/oauth2/token')
   .post(authController.isClientAuthenticated, auth2Controller.token);
-
-
-
+  
 router.route('/clients')
   .post(authController.isAuthenticated, auth2Controller.authorization)
   .get(authController.isAuthenticated, cliController.getClients)
 
 router.route('/users')
-
-
   .post(userController.postUsers)
   .get(userController.getUsers)
   
@@ -86,21 +75,17 @@ router.route('/users')
 
 //
 router.route('/users/:id')
-  
-
 /* .get(authController.isAuthenticated,userController.getUserById)
   .delete(authController.isAuthenticated, userController.deleteUser)
   .put(authController.isAuthenticated, userController.putUser); */
 
 //API endpoint for /events
 router.route('/events')
-   
-   /* .post(authController.isAuthenticated, eventController.postEvents)
+      /* .post(authController.isAuthenticated, eventController.postEvents)
     .get(authController.isAuthenticated, eventController.getEvents) */
 
 //API endpoint for /events:id
 router.route('/events/:id')
-
 /*
   .get(authController.isAuthenticated, eventController.getEventById) */
   //.delete(eventController.delete)
@@ -130,7 +115,6 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-
     res.send(err)
   });
 }
@@ -139,7 +123,6 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-
   res.render('error', {
     message: err.message,
     error: {}
